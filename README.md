@@ -25,7 +25,7 @@ Usage
 ```shell
 $ npm install microkernel
 $ npm install microkernel-mod-ctx microkernel-mod-options microkernel-mod-logger microkernel-mod-shutdown microkernel-mod-daemon
-$ npm install microkernel-cluster
+$ npm install microkernel-mod-cluster
 ```
 
 License
