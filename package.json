@@ -21,7 +21,12 @@
         "sprintfjs":    "~1.2.2"
     },
     "peerDependencies": {
-        "microkernel":   "*"
+        "microkernel":              "*",
+        "microkernel-mod-ctx":      "*",
+        "microkernel-mod-options":  "*",
+        "microkernel-mod-logger":   "*",
+        "microkernel-mod-shutdown": "*",
+        "microkernel-mod-daemon":   "*"
     },
     "scripts": {
         "prepublish": "jshint microkernel-mod-cluster.js && babel --presets es2015 microkernel-mod-cluster.js >microkernel-mod-cluster.js5"
