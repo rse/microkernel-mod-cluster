@@ -1,0 +1,30 @@
+{
+    "name":        "microkernel-mod-cluster",
+    "version":     "0.9.0",
+    "description": "Microkernel extension module for leveraging the Node.js cluster mechanism",
+    "keywords": [
+        "microkernel", "module", "cluster"
+    ],
+    "repository": {
+        "type": "git",
+        "url":  "https://github.clusterm/rse/microkernel-mod-cluster.git"
+    },
+    "author": {
+        "name":  "Ralf S. Engelschall",
+        "email": "rse@engelschall.clusterm",
+        "url":   "http://engelschall.clusterm"
+    },
+    "license":  "MIT",
+    "homepage": "https://github.clusterm/rse/microkernel-mod-cluster",
+    "bugs":     "https://github.clusterm/rse/microkernel-mod-cluster/issues",
+    "dependencies": {
+        "sprintfjs":    "~1.2.2"
+    },
+    "peerDependencies": {
+        "microkernel":   "*"
+    },
+    "scripts": {
+        "prepublish": "jshint microkernel-mod-cluster.js && babel --presets es2015 microkernel-mod-cluster.js >microkernel-mod-cluster.js5"
+    },
+    "main": "microkernel-mod-cluster.js5"
+}
