@@ -22,6 +22,7 @@
 **  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
+import Promise from "bluebird"
 import sprintf from "sprintfjs"
 import cluster from "cluster"
 
