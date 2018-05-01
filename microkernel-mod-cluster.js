@@ -1,6 +1,6 @@
 /*
 **  Microkernel -- Microkernel for Server Applications
-**  Copyright (c) 2015-2016 Ralf S. Engelschall <rse@engelschall.com>
+**  Copyright (c) 2016-2018 Ralf S. Engelschall <rse@engelschall.com>
 **
 **  Permission is hereby granted, free of charge, to any person obtaining
 **  a copy of this software and associated documentation files (the
@@ -22,11 +22,12 @@
 **  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-import Promise from "bluebird"
-import sprintf from "sprintfjs"
-import cluster from "cluster"
+/*  external requirements  */
+const sprintf = require("sprintfjs")
+const cluster = require("cluster")
 
-export default class Module {
+/*  the Microkernel module  */
+class Module {
     get module () {
         return {
             name:  "microkernel-mod-cluster",
@@ -164,7 +165,12 @@ export default class Module {
                                 sprintf("remaining worker #%d (pid: %d): to be killed now",
                                     worker.id, worker.process.pid))
                             /* eslint no-empty: 0 */
-                            try { worker.kill() } catch (ex) { }
+                            try {
+                                worker.kill()
+                            }
+                            catch (ex) {
+                                /*  NOP  */
+                            }
                         }
                     })
                 }
@@ -172,4 +178,7 @@ export default class Module {
         })
     }
 }
+
+/*  export the Microkernel module  */
+module.exports = Module
 
