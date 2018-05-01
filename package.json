@@ -39,6 +39,9 @@
         "microkernel-mod-shutdown": "*",
         "microkernel-mod-daemon":   "*"
     },
+    "engines": {
+        "node":                     ">=8.0.0"
+    },
     "scripts": {
         "prepublishOnly": "eslint --config eslint.yaml microkernel-mod-cluster.js"
     },
