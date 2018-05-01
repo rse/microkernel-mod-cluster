@@ -18,7 +18,7 @@
     "homepage": "https://github.clusterm/rse/microkernel-mod-cluster",
     "bugs":     "https://github.clusterm/rse/microkernel-mod-cluster/issues",
     "dependencies": {
-        "sprintfjs":                "1.2.6"
+        "sprintfjs":                "1.2.9"
     },
     "devDependencies": {
         "babel-cli":                "6.26.0",
