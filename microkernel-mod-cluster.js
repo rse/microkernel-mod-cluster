@@ -48,6 +48,10 @@ class Module {
         if (kernel.rs("options:options").cluster === 0)
             return
 
+        /*  we operate only in non daemonized mode  */
+        if (kernel.rs("options:options").daemon || kernel.rs("options:options").daemon_kill)
+            return
+
         /*  provide cluster information  */
         kernel.rs("cluster", cluster)
 
@@ -136,6 +140,11 @@ class Module {
     stop (kernel) {
         if (kernel.rs("ctx:procmode") !== "master")
             return
+
+        /*  we operate only in non daemonized mode  */
+        if (kernel.rs("options:options").daemon || kernel.rs("options:options").daemon_kill)
+            return
+
         return new Promise((resolve /*, reject */) => {
             /*  send shutdown message to all workers and disconnect them  */
             kernel.sv("log", "cluster", "info", "shutdown WORKER processes")
