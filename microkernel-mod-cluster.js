@@ -49,7 +49,7 @@ class Module {
             return
 
         /*  we operate only in non daemonized mode  */
-        if (mk.rs("options:options").daemon || mk.rs("options:options").daemon_kill)
+        if (kernel.rs("options:options").daemon || kernel.rs("options:options").daemon_kill)
             return
 
         /*  provide cluster information  */
@@ -142,7 +142,7 @@ class Module {
             return
 
         /*  we operate only in non daemonized mode  */
-        if (mk.rs("options:options").daemon || mk.rs("options:options").daemon_kill)
+        if (kernel.rs("options:options").daemon || kernel.rs("options:options").daemon_kill)
             return
 
         return new Promise((resolve /*, reject */) => {
