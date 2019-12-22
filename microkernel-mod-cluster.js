@@ -39,8 +39,9 @@ class Module {
     latch (kernel) {
         kernel.latch("options:options", (options) => {
             options.push({
-                name: "cluster", type: "integer", "default": 0,
-                help: "Enable clustering server mode", helpArg: "INSTANCES" })
+                name: "cluster", type: "integer", default: 0,
+                help: "Enable clustering server mode", helpArg: "INSTANCES"
+            })
         })
     }
     prepare (kernel) {
@@ -56,7 +57,7 @@ class Module {
         kernel.rs("cluster", cluster)
 
         /*  update process mode  */
-        let mode = cluster.isMaster ? "master" : "worker"
+        const mode = cluster.isMaster ? "master" : "worker"
         kernel.rs("ctx:procmode", mode)
 
         if (mode === "master") {
@@ -84,7 +85,7 @@ class Module {
             /*  react on worker process termination  */
             cluster.on("exit", (worker, code, signal) => {
                 /*  log event  */
-                let way = worker.suicide ? "expectedly" : "unexpectedly"
+                const way = worker.suicide ? "expectedly" : "unexpectedly"
                 if (signal)
                     kernel.sv("log", "cluster", "trace", sprintf("worker #%d (pid: %d): %s terminated by signal %s",
                         worker.id, worker.process.pid, way, signal))
@@ -103,7 +104,7 @@ class Module {
             })
 
             /*  spawn requested number of workers  */
-            let workers = kernel.rs("options:options").cluster
+            const workers = kernel.rs("options:options").cluster
             kernel.sv("log", "cluster", "info", sprintf("forking %d WORKER processes", workers))
             for (let i = 0; i < workers; i++)
                 cluster.fork()
@@ -149,7 +150,7 @@ class Module {
             /*  send shutdown message to all workers and disconnect them  */
             kernel.sv("log", "cluster", "info", "shutdown WORKER processes")
             Object.keys(cluster.workers).forEach((id) => {
-                let worker = cluster.workers[id]
+                const worker = cluster.workers[id]
                 if (worker.isConnected()) {
                     worker.send("shutdown")
                     worker.disconnect()
@@ -157,9 +158,9 @@ class Module {
             })
 
             /*  await the final death of all workers  */
-            let interval = setInterval(() => {
+            const interval = setInterval(() => {
                 /*  determine still active workers  */
-                let workers = Object.keys(cluster.workers)
+                const workers = Object.keys(cluster.workers)
                 if (workers.length === 0) {
                     /*  stop awaiting  */
                     clearTimeout(interval)
@@ -168,7 +169,7 @@ class Module {
                 else {
                     /*  kill still remaining workers  */
                     workers.forEach((id) => {
-                        let worker = cluster.workers[id]
+                        const worker = cluster.workers[id]
                         if (!worker.isDead()) {
                             kernel.sv("log", "cluster", "trace",
                                 sprintf("remaining worker #%d (pid: %d): to be killed now",
